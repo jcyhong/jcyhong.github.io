@@ -8,7 +8,7 @@ relative_permalinks: true
 title:               Johnny Hong
 tagline:             A PhD student in Statistics
 description:         The presonal website of Johnny Hong
-url:                 http://johnnyhong.github.io
+url:                 http://jcyhong.github.io
 paginate:            1
 baseurl:             ""
 
@@ -28,7 +28,7 @@ author:
 # Custom vars
 version:             1.0.0
 github:
-  repo:              github.com/jcyhong/johnnyhong.github.io
+  repo:              github.com/jcyhong/jcyhong.github.io
 
 # List of pages
 pages_list:          {'Archive':'/archive'}
