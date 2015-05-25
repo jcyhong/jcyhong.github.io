@@ -6,7 +6,7 @@ relative_permalinks: true
 
 # Setup
 title:               Johnny Hong
-tagline:             A PhD student in Statistics
+tagline:             
 description:         The presonal website of Johnny Hong
 url:                 http://jcyhong.github.io
 paginate:            1
