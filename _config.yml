@@ -1,0 +1,34 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
+
+# Setup
+title:               Johnny Hong
+tagline:             A PhD student in Statistics
+description:         The presonal website of Johnny Hong
+url:                 http://johnnyhong.github.io
+paginate:            1
+baseurl:             ""
+
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+# About/contact
+author:
+  name:              Johnny Hong
+  url:               
+  email:             jcyhong@berkeley.edu
+
+# Custom vars
+version:             1.0.0
+github:
+  repo:              github.com/jcyhong/johnnyhong.github.io
+
+# List of pages
+pages_list:          {'Archive':'/archive'}
