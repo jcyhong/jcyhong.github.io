@@ -2,7 +2,7 @@
 layout: post
 title: Example content
 ---
-
+$$a^2+b^2=c^2$$
 
 <div class="message">
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
