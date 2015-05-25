@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About Myself
+title: Welcome!
 ---
 
 <p class="message">
-  I am a first year PhD student in Statistics at University of California, Berkeley. I have completed my Bachelor's degree in Applied Mathematics and Statistics at University of California, Davis.
+  I am a first year PhD student in Statistics at University of California, Berkeley. I have completed my B.S. degree in Applied Mathematics and my B.S. degree in Statistics (Applied Statistics with emphasis on Economics) at University of California, Davis.
 </p>
 
 ## Coursework
