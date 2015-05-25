@@ -33,4 +33,3 @@ github:
 # List of pages
 pages_list:          {'Home':'/home','Coursework':'/coursework','Teaching':'/teaching','Archive':'/archive'}
 
-markdown:             kramdown
