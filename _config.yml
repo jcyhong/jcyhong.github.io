@@ -31,5 +31,5 @@ github:
   repo:              github.com/jcyhong/jcyhong.github.io
 
 # List of pages
-pages_list:          {'Home':'/home','Coursework':'/coursework','Teaching':'/teaching','Archive':'/archive'}
+pages_list:          {'Home':'/home','Coursework':'/coursework','Teaching':'/teaching'}
 
