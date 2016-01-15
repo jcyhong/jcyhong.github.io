@@ -5,13 +5,13 @@ title: Coursework
 
 ## Coursework at UC Berkeley
 
-* Fall 2014: STAT 205A Probability Theory
-* Fall 2014: STAT 210A Theoretical Statistics
-* Spring 2015: STAT 205B Probability Theory
-* Spring 2015: STAT 210B Theoretical Statistics
+* Fall 2015: IEOR 222: Financial Engineering Systems I
 * Fall 2015: STAT 215A Statistical Models: Theory and Application
 * Fall 2015: STAT 241A: Statistical Learning Theory
-* Fall 2015: IEOR 222: Financial Engineering Systems I
+* Spring 2015: STAT 205B Probability Theory
+* Spring 2015: STAT 210B Theoretical Statistics
+* Fall 2014: STAT 205A Probability Theory
+* Fall 2014: STAT 210A Theoretical Statistics
 
 ## Coursework at UC Davis
 
