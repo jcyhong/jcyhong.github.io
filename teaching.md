@@ -9,3 +9,7 @@ GSI (Graduate Student Instructor) at UC Berkeley
 * Summer 2015: STAT 135 Concepts of Statistics
 * Fall 2015: STAT 135 Concepts of Statistics
 * Fall 2015: STAT 210A Theoretical Statistics (Grader)
+
+TA (Teaching Assistant) at <a href http://www.tbsi.tsinghua.edu.cn>Tsinghua-Berkeley Shenzhen Institute (TBSI)</a>
+
+* Winter 2015 (3-week course): Introduction to Financial Engineering
