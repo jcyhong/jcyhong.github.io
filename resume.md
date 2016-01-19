@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Resume; 
+title: Resume 
 ---
 
 You can view my resume [here]({{site.url}}/assets/Hong,ChunYu.pdf).
