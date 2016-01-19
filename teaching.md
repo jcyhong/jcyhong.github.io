@@ -5,6 +5,7 @@ title: Teaching
 
 GSI (Graduate Student Instructor) at UC Berkeley
 
+* Spring 2016: STAT 222 Statistics MA Capstone Project
 * Fall 2015: STAT 210A Theoretical Statistics (Grader)
 * Fall 2015: STAT 135 Concepts of Statistics
 * Summer 2015: STAT 135 Concepts of Statistics
