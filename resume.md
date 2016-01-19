@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Teaching
+title: R&eacute;sum&eacute; 
 ---
 
-You can view my resume [here]({{site.url}}/assets/Hong,ChunYu.pdf).
+You can view my r&eacute;sum&eacute; [here]({{site.url}}/assets/Hong,ChunYu.pdf).
