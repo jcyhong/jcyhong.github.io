@@ -8,6 +8,7 @@ GSI (Graduate Student Instructor) at UC Berkeley
 * Spring 2016: STAT 134 Concepts of Probability
 * Spring 2016: STAT 222 Statistics MA Capstone Project
 	* <a href = "http://www.jarrodmillman.com/stat222-spring2016/">Course website</a>
+	* <a href = "http://jcyhong.github.io/ggplot_demo.html/">A (very) brief introduction to ggplot2</a>
 * Fall 2015: STAT 210A Theoretical Statistics (Grader)
 * Fall 2015: STAT 135 Concepts of Statistics
 * Summer 2015: STAT 135 Concepts of Statistics
