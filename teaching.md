@@ -6,6 +6,7 @@ title: Teaching
 GSI (Graduate Student Instructor) at UC Berkeley
 
 * Spring 2016: STAT 134 Concepts of Probability
+	* [Course Website](http://www.stat.berkeley.edu/~ani/s134s16/index.html)
 * Spring 2016: STAT 222 Statistics MA Capstone Project
 	* <a href = "http://www.jarrodmillman.com/stat222-spring2016/">Course website</a>
 	* <a href = "http://jcyhong.github.io/ggplot_demo.html">A (very) brief introduction to ggplot2</a> ([R Markdown]({{site.url}}/assets/ggplot_demo.Rmd))
