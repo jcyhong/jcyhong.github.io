@@ -1,0 +1,271 @@
+---
+title: "A (very) brief introduction to ggplot2"
+author: "Johnny Hong"
+date: "January 30, 2016"
+output: html_document
+---
+
+This intro assumes that the readers know the basics of R. To keep everything concise, the descriptions have a tendency to be extremely short, so pointers to other references are scattered throughout this intro.
+
+After working through this intro, you should be able to ...
+
+1. understand the key components of a ggplot plot
+2. explore many other features of ggplot2 on your own.
+
+
+## Outline:
+
+1. [Motivation](#motivation)
+2. [Layering](#layering)
+3. [Faceting](#faceting)
+4. [Maps](#maps)
+5. [References](#references)
+
+# Motivation
+
+## What is ggplot2?
+-a data visualization package in R created by Hadley Wickham. See [wikipedia](https://en.wikipedia.org/wiki/Ggplot2).
+
+## Why ggplot2?
+1. Ability to construct plots in layers.
+2. Nice looking graphics (relative to base graphics, in general).
+3. Follows grammar of graphics; more intuitive.
+  - See the [article](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf) by Hadley Wickham for more information about grammar of graphics.
+4. etc.
+
+See this [github page](https://github.com/hadley/ggplot2/wiki/Why-use-ggplot2) for more reasons to use ggplot2.
+
+# Layering
+
+Five components of a layer:
+
+1. __Data__ 
+  + a data frame containing the dataset of interest
+2. __Aesthetic mappings__
+  + descriptions of how the variables in the dataset are mappeed to visual objects
+  + specified by the `aes()` function
+3. __Geom__
+  + geometric objects
+  + control the type of plots
+  + key ones: line (lineplot), point (scatterplot), bar (barplot), histogram, density
+4. __Stat__
+  + statistical transformation of the data
+5. __Position Adjustments__
+  + minor adjustments of the position of layer elements 
+  + mainly used for discrete data
+  + dodge, fill, identity, jitter, stack
+
+We will focus on the first three in this tutorial.
+
+## Example 1:
+Using the iris dataset, create a scatterplot of petal lengths (y-axis) versus petal widths (x-axis), color coded by species. In addition, plot the regression line (petal lengths vs petal widths) with a 95\% confidence band. 
+
+Let's construct the plot step-by-step.
+
+First, we would like to initialize our plot using `ggplot()`.
+```{r}
+library(ggplot2)
+p1 <- ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width))
+p1
+```
+
+What does the code do? `data = iris` tells ggplot() to look at the dataset `iris`, and `aes(x = Petal.Length, y = Petal.Width))` maps `x` to the variable `Petal.Length` in `iris` and `y` to the variable `Petal.Width` in `iris` (this is evident from the x-axis and the y-axis of the above plot).
+
+You may wonder why there is nothing shown on the plot. The reason is that we haven't specified what we want to see on the plot! This is where `geom` comes into play.
+
+```{r}
+p2 <- p1 + geom_point(aes(color = Species))
+p2
+```
+
+Three things are added to the plot: 
+
+1. Points representing the observations
+2. Colors corresponding to the species
+3. A legend that describes the color coding
+
+What happened? geom_point() generates a scatterplot via a layer of points based on `x` and `y`, and `aes(color = Species)` maps `color` to the variable `Species`. One nice feature of `ggplot()` is that the legend is created automatically when color-coding/shape-coding via aesthetic mappings.
+
+Finally, we use `geom_smooth()` with the argument `method='lm'` to plot the regression line with a confidence band.
+
+```{r}
+p3 <- p2 + geom_smooth(method='lm')
+p3
+```
+
+Creating/modifying the title and the axis labels is straightforward.
+
+```{r}
+p4 <- p3 + xlab("Petal Length (cm)") + ylab("Petal Width (cm)") + ggtitle("Petal Length versus Petal Width")
+p4
+```
+
+Just to illustrate how the plot evolves, let's try to organize the four plots in one single plot. An easy way is to use the function `grid.arrange()` in the package __gridExtra__.
+
+```{r}
+library(gridExtra)
+library(grid)
+grid.arrange(p1 + ggtitle("ggplot(data = iris, \naes(x = Petal.Length, \ny = Petal.Width))"),
+             p2 + ggtitle("+ geom_point(aes(color = Species))"), 
+             p3 + ggtitle("+ geom_smooth(method='lm')"), 
+             p4, nrow = 2,
+             top = textGrob("Evolution of the plot in Example 1",
+                            gp=gpar(fontsize=20))) 
+```
+
+
+## Exercise 1
+
+Import the datasets using the following commands:
+```{r}
+#data(presidential, package = 'ggplot2')
+#sp500 <- read.csv("http://real-chart.finance.yahoo.com/table.csv?s=%5EGSPC&a=00&b=3&c=1950&d=00&e=31&f=2016&g=d&ignore=.csv")
+```
+Create the following plot.
+
+![alt text](sp500.png)
+
+Hint: `geom_rect()` might be useful.
+
+Remark: This exercise is inspired from [this tutorial](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html).
+
+# Faceting
+
+Faceting is basically a mechanism for arranging several plots on the same page. 
+Two types of faceting:
+
+1. `facet_grid`
+  - a 2d grid of panels
+2. `facet_wrap`
+  - a 1d ribbon of panels wrapped into 2d 
+
+## Example 2: 
+Make a 1x3 panels of histograms of petal lengths, one for each species.
+
+```{r}
+library(plyr)
+vline_df <- ddply(iris, .(Species), function(sp){
+  mean(sp$Petal.Length)
+})
+ggplot(data = iris, aes(x = Petal.Length)) + 
+  geom_histogram() + 
+  geom_vline(data = vline_df, aes(xintercept = V1, color = Species)) +
+  facet_grid(.~Species) +
+  ggtitle("Petal Lengths of each species")
+```
+
+As a side note, each of the three plots above has a considerable amount of empty space. It might be better to simply overlay the histograms for better visualization.
+
+```{r}
+ggplot(data = iris, aes(x=Petal.Length, fill=Species)) + 
+  geom_histogram(alpha=0.2, position="identity") +
+  geom_vline(data = vline_df, aes(xintercept = V1, color = Species)) +
+  ggtitle("Petal Lengths of each species")
+```
+
+## Example 3:
+Create a visualization for explaining Simpson's paradox using the gender bias dataset about UC Berkeley 1973 Graduate Admissions.
+
+```{r}
+library(datasets)
+UCBdt <- as.data.frame(UCBAdmissions)
+overall <- ddply(UCBdt, .(Gender), function(gender) {
+  temp <- c(sum(gender[gender$Admit == "Admitted", "Freq"]), 
+                sum(gender[gender$Admit == "Rejected", "Freq"])) / sum(gender$Freq)
+  names(temp) <- c("Admitted", "Rejected")
+  temp
+})
+departmentwise <- ddply(UCBdt, .(Gender,Dept), function(gender) {
+  temp <- gender$Freq / sum(gender$Freq)
+  names(temp) <- c("Admitted", "Rejected")
+  temp
+})
+
+# A barplot for overall admission percentage for each gender.
+p1 <- ggplot(data = overall, aes(x = Gender, y = Admitted, width = 0.2))
+p1 <- p1 + geom_bar(stat = "identity") + 
+  ggtitle("Overall admission percentage") + ylim(0,1) 
+
+# A 1x6 panel of barplots, each of which represents the 
+# admission percentage for a department
+p2 <- ggplot(data = UCBdt[UCBdt$Admit == "Admitted", ], aes(x = Gender, y = Freq))
+p2 <- p2 + geom_bar(stat = "identity") + facet_grid(. ~ Dept) +
+  ggtitle("Number of admitted students\nfor each department") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+# A 1x6 panel of barplots, each of which represents the 
+# number of admitted students for a department
+p3 <- ggplot(data = departmentwise, aes(x = Gender, y = Admitted))
+p3 <- p3 + geom_bar(stat = "identity") + facet_grid(. ~ Dept) + ylim(0,1) +
+  ggtitle("Admission percentage\nfor each department") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# A 1x6 panel of barplots, each of which represents the 
+# number of applicants for a department
+p4 <- ggplot(data = UCBdt, aes(x = Gender, y = Freq))
+p4 <- p4 + geom_bar(stat = "identity") + facet_grid(. ~ Dept) + 
+  ggtitle("Number of Applicants\nfor each department") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# Arrange the four plots on a page.
+grid.arrange(p1, p2, p3, p4, nrow=2, 
+             top = textGrob("Simpson's Paradox: UC Berkeley 1973 Admissions", gp=gpar(fontsize=20)))
+
+```
+
+The command `theme(axis.text.x = element_text(angle = 90, hjust = 1))` rotates the axis label 90 degrees counterclockwise with some horizontal adjustment. See [the documentation of ggplot2 themes](http://docs.ggplot2.org/dev/vignettes/themes.html) for more information on the control of non-data elements of a ggplot object.
+
+
+
+# Maps
+
+There are tools for dealing with map data in ggplot. The function `border()` allows us ot create borders on a map.
+
+## Example 4
+Suppose I would like to study the housing market in Texas for cities with population at least 100000 between January and June in 2015.
+```{r}
+# Obtain the dataset.
+library(maps)
+data(us.cities) # from the package maps
+data(txhousing) # from the package ggplot2
+
+# Preprocessing
+tx.cities <- subset(us.cities, country.etc == "TX" & pop >= 100000)
+tx.cities$city <- unlist(strsplit(tx.cities$name, " TX"))
+txhousing.2015 <- subset(txhousing, year == 2015 & month <= 6 &
+                             city %in% tx.cities$city)
+temp <- tx.cities[tx.cities$city %in% txhousing.2015$city, c("pop", "lat", "long")]
+temp <- temp[rep(seq_len(nrow(temp)), each = 6), ]
+txhousing.2015.geo <- cbind(txhousing.2015, temp)
+
+# Create the plot.
+ggplot(txhousing.2015.geo, aes(x = long, y = lat, size = sales, colour = cut(median, 5))) +
+  borders("county", "texas", colour = "grey70") + 
+  geom_point(shape=1, stroke = 1.1) + facet_wrap(~month) +
+  ggtitle("Housing market for populous cities in Texas \n (Jan-Jun 2015)") +
+  scale_colour_discrete(name  = "Median price") +
+  scale_size_continuous(name  = "Number of Sales")
+```
+
+Note that to adjust the legend, a command of the form `scale_xxx_yyy(...)` is used. See [the cookbook for R page on ggplot2 legends](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/) for more detail.
+
+As a side note, there is a package called ggmap which might be useful for creating spatial plots. See [here](http://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/) for a quick introduction/tutorial of ggmap.
+
+## Example 5
+Create a visual display of the population of Texas cities on a map.
+```{r}
+library(ggmap) 
+tx_center = as.numeric(geocode("Texas"))
+txMap = ggmap(get_googlemap(center=tx_center, scale=2, zoom=6), extent="normal") 
+
+tx.cities.all <- subset(us.cities, country.etc == "TX")
+txMap + geom_point(aes(x=long, y=lat, size = pop), col = "orange", 
+                   data = tx.cities.all, alpha=0.4) +
+  ggtitle("Population of Texas cities")
+```
+
+# References
+1. [ggplot2: Elegant Graphics for Data Analysis](http://www.springer.com/us/book/9780387981406) by Hadley Wickham
+2. [Quick Introduction to ggplot2](http://blog.echen.me/2012/01/17/quick-introduction-to-ggplot2/) by Edwin Chen
+3. [ggmap: Spatial Visualization with ggplot2] (http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) by David Kahle and Hadley Wickham. The R Journal, 5(1),
+  144-161.
