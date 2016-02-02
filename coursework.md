@@ -5,7 +5,7 @@ title: Coursework
 
 ## Coursework at UC Berkeley
 
-* Spring 2016: EE 227C/STAT 260 Convex Optimization and Approximation
+* Spring 2016: STAT 260 Convex Optimization and Approximation
 * Spring 2016: STAT 272 Statistical Consulting
 * Fall 2015: IEOR 222 Financial Engineering Systems I
 * Fall 2015: STAT 215A Statistical Models: Theory and Application
