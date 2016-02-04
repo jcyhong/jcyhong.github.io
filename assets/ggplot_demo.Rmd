@@ -118,8 +118,8 @@ grid.arrange(p1 + ggtitle("ggplot(data = iris, \naes(x = Petal.Length, \ny = Pet
 
 Import the datasets using the following commands:
 ```{r}
-#data(presidential, package = 'ggplot2')
-#sp500 <- read.csv("http://real-chart.finance.yahoo.com/table.csv?s=%5EGSPC&a=00&b=3&c=1950&d=00&e=31&f=2016&g=d&ignore=.csv")
+data(presidential, package = 'ggplot2')
+sp500 <- read.csv("http://real-chart.finance.yahoo.com/table.csv?s=%5EGSPC&a=00&b=3&c=1950&d=00&e=31&f=2016&g=d&ignore=.csv")
 ```
 Create the following plot.
 
@@ -128,6 +128,28 @@ Create the following plot.
 Hint: `geom_rect()` might be useful.
 
 Remark: This exercise is inspired from [this tutorial](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html).
+
+```{r}
+sp500$Date <- as.Date(sp500$Date)
+
+# Create a line plot of S&P500 log price over time.
+layer_line <- geom_line(
+  mapping = aes(x = Date, y = log(Adj.Close)),
+  data = sp500
+)
+
+# Create a layer of rectangles indicating the political 
+# affiliation for each president over different time period.
+layer_rect <- geom_rect(
+  data = presidential, 
+  aes(xmin = start, xmax = end, ymin = -Inf, ymax = Inf, fill = party), 
+  alpha = 0.4
+)
+
+# Put everything together.
+ggplot() + layer_line + layer_rect
+
+```
 
 # Faceting
 
