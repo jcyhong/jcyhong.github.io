@@ -3,7 +3,7 @@ layout: page
 title: Research/Projects
 ---
 
-* [Machine learning techniques for price change forecast using the limit order book data]({{site.url}}/assets/machine_learning_price_movements.pdf) (with J. Han, N. Sutardja, S.F. Wong, 2015)
+* [Machine learning techniques for price change forecast using the limit order book data]({{site.url}}/assets/machine-learning-price-movements.pdf) (with J. Han, N. Sutardja, S.F. Wong, 2015)
 
 <b>Abstract</b>: In the setting of high-frequency trading, stock price movements are fairly predictable. 
 We use support vector machines (SVMs) with various kernels and random forests to predict the midprice movements of SPY. 
