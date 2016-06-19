@@ -15,6 +15,6 @@ This work is based on the paper "Modeling high-frequency limit order book dynami
 <b>Abstract</b>: We construct two HMMs to model the stock returns for every 10-day period. 
 Our first model uses the Baum-Welch algorithm for inference about volatility, which regards volatility as hidden states and uses a mean zero Gaussian distribution as the emission probability for the stock returns. 
 Our second model uses a spectral algorithm to perform stock returns forecasting. 
-We analyze the tradeoffs of these two implementations as well.
+We analyze the tradeoffs of these two implementations as well. [Code](https://github.com/jcyhong/stat241A)
 
 * <a href = "https://github.com/mkoeppe/infinite-group-relaxation-code">Sage program for computation and experimentation with the 1-row Gomory–Johnson infinite group problem</a> (with M. K&ouml;ppe, Y. Zhou, 2014-)
