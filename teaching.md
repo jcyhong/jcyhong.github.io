@@ -5,6 +5,8 @@ title: Teaching
 
 GSI (Graduate Student Instructor) at UC Berkeley
 
+* Fall 2016: STAT 153 Introduction to Time Series
+	* [Lab 1](http://jcyhong.github.io/stat153_lab1.html)
 * Spring 2016: STAT 134 Concepts of Probability
 	* [Course Website](http://www.stat.berkeley.edu/~ani/s134s16/index.html)
 * Spring 2016: STAT 222 Statistics MA Capstone Project

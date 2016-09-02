@@ -1,0 +1,166 @@
+---
+title: "STAT 153 Lab 1"
+author: "Johnny Hong"
+date: "August 29, 2016"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+# Introduction
+This article is a quick start on using R to deal with time-dependent data.
+
+# Time indices
+In R, there are several options for dealing with time indices.
+
+## Date Objects
+For dates, the class `Date` in the `base` package can be useful.
+
+### A plotting example
+```{r}
+start_date <- as.Date("2010-01-01")
+end_date <- as.Date("2011-12-31")
+dates <- seq(start_date, end_date, by=1)
+set.seed(100)
+net_worth <- cumsum(rnorm(365 * 2))
+plot(dates, net_worth, type="l",
+     main="Johnny's Net Worth (Fictional)",
+     xlab="Date",
+     ylab="Value (in US dollars)")
+
+# Want a more informative x-axis
+plot(dates, net_worth, type="l",
+     main="Johnny's Net Worth (Fictional)",
+     xlab="Date",
+     ylab="Value (in US dollars)",
+     xaxt="n")
+axis.Date(1, at=seq(start_date, end_date, by="3 mon"), format="%Y-%m")
+```
+
+### Formatting
+Often the date is not presented in the form `YYYY-MM-DD` and directly using
+`as.Date()` might result in an error. On the other hand, sometimes we might
+want to convert the date to a format other than `YYYY-MM-DD`.
+```
+as.Date("12/18/1993", format="%m/%d/%Y")
+as.Date("September 2, 2013", format="%B %d, %Y")
+as.Date("03Aug2014", format="%d%B%Y")
+format(Sys.Date(), "%b. %d, %Y")
+```
+For more information on how to specify the date format, see the documentation for `strptime`.
+
+## POSIXt objects
+POSIX stands for "Portable Operating System Interface". There are two subclasses of POSIXt: 1. POSIXct (calendar time): a signed number of seconds since 1970-01-01; 2. POSIXlt (local time): a named list of attributes, including the second (sec), minute (min), hour (hour), day of the month (mday), month (mon), year (year), day of the week (wday), day of the year (yday), and daylight savings time flag (isdst).
+
+```{r}
+heart_rate1 <- read.table("http://ecg.mit.edu/time-series/hr.11839")[, 1]
+heart_rate2 <- as.vector(read.table("http://ecg.mit.edu/time-series/hr.7257"))[, 1]
+numObs <- length(heart_rate1)
+# Suppose the first observation was recorded at 4:25pm on Apr 3, 2004. 
+times <- as.POSIXct("2004-04-03 16:25:00") + seq(0, len=1800, by=0.5)
+
+summary(heart_rate1)
+summary(heart_rate2)
+var(heart_rate1)
+var(heart_rate2)
+plot(heart_rate1 ~ times, type="l",
+     xlab="time", ylab="heart rate",
+     main="Heart Rates")
+lines(heart_rate2 ~ times, col="red")
+legend("bottom", legend=c("Subject 1", "Subject 2"), col=c("black", "red"),
+       lty=1)
+```
+
+## Arithmetics
+Doing arithmetics (addition and subtraction) with date-time objects is almost
+as easy as doing arithmerics with ordinary numbers. The package `lubridate`
+facilitates some of the operations.
+
+```{r}
+# POSIXct objects
+ex1 <- as.POSIXct("2014-02-03 16:00:00")
+# Add 10 seconds (note the by default 10 means 10 seconds)
+ex2 <- ex1 + 10
+print(ex2)
+# Add 10 hours
+ex3 <- ex1 + 10 * 60 * 60
+print(ex3)
+# Add 10 days
+ex4 <- ex1 + 10 * 24 * 60 * 60
+print(ex4)
+
+library(lubridate)
+# Add 10 hours
+ex5 <- ex1 + hours(10)
+print(ex5)
+ex6 <- ex1 + days(10)
+print(ex6)
+```
+
+# `ts` objects
+The `ts` object is useful for analyzing time series with regular time spacings.
+```{r}
+print(nottem)
+class(nottem)
+tsp(nottem) # start time, end time, frequency
+plot(nottem, main="Average air temperature at Nottingham Castle",
+  xlab="Time",
+  ylab="Temperature (Fahrenheit)")
+# We will discuss this in the future.
+plot(stl(nottem, "per"))
+```
+
+# `ggplot2`
+For visualization, besides the `base` graphics, the R package `ggplot2`,
+developed by Hadley Wickham, are often used. While `ggplot2` is a bit harder
+to learn compared to `base` graphics, the resulting graphics are often more
+visually appealing. For a slightly more in-depth introduction to `ggplot2`, see [here](http://jcyhong.github.io/ggplot_demo.html).
+
+```{r}
+library(ggplot2)
+library(zoo)
+
+# Redo heart rate example.
+heart_rate_data <- data.frame(times, heart_rate1, heart_rate2)
+colnames(heart_rate_data) <- c("Time", "Subject 1", "Subject 2")
+library(reshape2)
+heart_rate_data_long <- melt(heart_rate_data,
+                             id.vars="Time")
+ggplot(heart_rate_data_long,
+        aes(x=Time, y=value, color=variable)) +
+  geom_line() +
+  xlab("time") +
+  ylab("heart rate") +
+  scale_color_discrete(guide=guide_legend(title = "Subject")) +
+  ggtitle("Heart rate time series") +
+  theme(
+    plot.title = element_text(size=24),
+    axis.title.x = element_text(size=14),
+    axis.title.y = element_text(size=14),
+    axis.text.x = element_text(size=12),
+    axis.text.y = element_text(size=12),
+    legend.title = element_text(size=14),
+    legend.text = element_text(size=12)
+  )
+
+economics_mod <- economics
+economics_mod$unemploy_ma <- rollmean(economics$unemploy, k=5,
+                              fill=list(NA, NULL, NA))
+ggplot(economics_mod, aes(x=date)) +
+  geom_line(aes(y=unemploy, color="reality")) +
+  geom_line(aes(y=unemploy_ma, color="moving average")) +
+  scale_colour_manual("Lines", values=c("reality"="black",
+                                        "moving average"="red")) +
+  ggtitle("US Unemployment") +
+  xlab("Unemployment (in thousand)") + 
+  ylab("Date")
+```
+
+# Other useful packages
+There are many more ways in R to deal with time series data. For irregularly spaced
+time series, consider the packages `zoo`, `xts`, and `timeSeries`.
+
+# Reference
+1. [ggplot2: Elegant Graphics for Data Analysis](http://www.springer.com/us/book/9780387981406) by Hadley Wickham
+2. [Working with Financial Time Series Data in R](https://faculty.washington.edu/ezivot/econ424/Working%20with%20Time%20Series%20Data%20in%20R.pdf) by Eric Zivot (2014).
