@@ -1,0 +1,94 @@
+---
+title: "STAT 153 Lab 2"
+author: "Johnny Hong"
+date: "September 9, 2016"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+# Introduction
+We are going to study the dataset `hours` using the techniques described in Chapter 3 of Cryer and Chan, following Problems 3.4 and 3.10 closely. 
+
+```{r}
+library(TSA)
+# Load the data.
+hours <- read.table("http://homepage.divms.uiowa.edu/~kchan/TSA/Datasets/hours.dat",
+                    header=T)
+```
+
+# Preliminary analysis
+As described in the text, the dataset contains monthly values of the average hours worked per week in the U.S. manufacturing sector for July 1982 through June 1987.
+Our first step is to plot the series with monthly plotting symbols.
+```{r}
+hours <- ts(hours$hours, start=c(1982, 7), frequency=12)
+plot(hours,
+     main="Average Hours Worked Per Week\nin the U.S. manufacturing sector",
+     ylab="Hours")
+# Append monthly plotting symbols.
+points(as.vector(time(hours)), hours, pch=as.vector(season(hours)))
+```
+
+# Trend Fitting
+For simplicity, consider only linear trend and quadratic trend.
+
+## Linear Trend
+
+```{r}
+linear_time_trend <- lm(hours ~ time(hours))
+# Regression output.
+summary(linear_time_trend)
+# Study standardized residuals.
+plot(as.vector(time(hours)), rstudent(linear_time_trend), type="l",
+     xlab="Time", ylab="hours", main="Residuals Versus Time (Linear Trend)")
+# Append monthly plotting symbols.
+points(as.vector(time(hours)), rstudent(linear_time_trend),
+       pch=as.vector(season(hours)))
+```
+
+## Quadratic trend
+
+```{r}
+quadratic_time_trend <- lm(hours ~ time(hours) + I(time(hours) ^ 2))
+# Regression output.
+summary(quadratic_time_trend)
+# Study standardized residuals.
+plot(as.vector(time(hours)), rstudent(quadratic_time_trend), type="l",
+     xlab="Time", ylab="hours", main="Residuals Versus Time (Quadratic Trend)")
+# Append monthly plotting symbols.
+points(as.vector(time(hours)), rstudent(quadratic_time_trend),
+       pch=as.vector(season(hours)))
+```
+
+# Residual Analysis
+We restrict our attention to residuals from fitting the quadratic trend.
+
+## Runs Test (for detecting non-randomness)
+For runs test, the null hypothesis is that the observations are not auto-correlated. A small p-value rejects the null and provides evidence of (nontrivial) autocorrelation.
+```{r}
+res <- rstudent(quadratic_time_trend)
+runs(res)
+```
+
+## Correlogram / ACF plot
+Correlogram (also known as an ACF plot) provides a nice graphical display of the sample autocorrelation as a function of time lag. The horizontal dotted lines are at $\pm 1.96/\sqrt{n}$, where $n$ is the number of observations in the time series. If all the vertical bars lie within the dotted lines, we fail to reject the null hypothesis that $\rho_k = 0$ for the values of $k$ displayed.
+```{r}
+acf(res, main="Residuals")
+```
+
+## Histogram
+Histograms can be useful for studying normality. If the histogram is roughly bell-shaped, it might be reasonable to conclude that the deviation from normality is not too severe.
+```{r}
+hist(res, main="Histogram of Residuals")
+```
+
+## Normal Quantile-Quantile plot
+A more careful method for checking normality is the normal quantile-quantile plot. If the data is generated from a normal distribution, the plot resembles a straight line. 
+```{r}
+qqnorm(res)
+qqline(res)
+```
+
+# Reference
+1. Time Series Analysis (With Applications in R) by Jonathan D. Cryer and Kung-Sik Chan
