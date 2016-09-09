@@ -65,7 +65,7 @@ points(as.vector(time(hours)), rstudent(quadratic_time_trend),
 We restrict our attention to residuals from fitting the quadratic trend.
 
 ## Runs Test (for detecting non-randomness)
-For runs test, the null hypothesis is that the observations are not auto-correlated. A small p-value rejects the null and provides evidence of (nontrivial) autocorrelation.
+For runs test, the null hypothesis is that the observations are independently drawn from the same distribution. A small p-value rejects the null and provides evidence of (nontrivial) dependence.
 ```{r}
 res <- rstudent(quadratic_time_trend)
 runs(res)
