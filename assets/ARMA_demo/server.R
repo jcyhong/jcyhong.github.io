@@ -1,6 +1,6 @@
 plotARMAacf <- function(ar = numeric(),
                         ma = numeric(),
-                        lag.max = r,
+                        lag.max = 15,
                         pacf = FALSE) {
   arOrder <- length(ar)
   maOrder <- length(ma)
