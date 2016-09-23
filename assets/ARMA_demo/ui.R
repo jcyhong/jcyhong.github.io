@@ -8,7 +8,12 @@ navbarPage("ARMA models",
                       sidebarPanel(
                         sliderInput("AR_order", "Order",
                                     min=1, max=5, value=1),
-                        uiOutput("AR_sliders")
+                        uiOutput("AR_sliders"),
+                        sliderInput("AR_sample_size",
+                                    "Number of observations",
+                                    min=10, max=500, value=10,
+                                    step=10,
+                                    animate=animationOptions(interval=300, loop=F))
                         ),
                       mainPanel(
                         plotOutput("AR_plot")
@@ -24,7 +29,12 @@ navbarPage("ARMA models",
                       sidebarPanel(
                         sliderInput("MA_order", "Order",
                                     min=1, max=5, value=1),
-                        uiOutput("MA_sliders")
+                        uiOutput("MA_sliders"),
+                        sliderInput("MA_sample_size",
+                                    "Number of observations",
+                                    min=10, max=500, value=10,
+                                    step=10,
+                                    animate=animationOptions(interval=300, loop=F))
                       ),
                       mainPanel(
                         plotOutput("MA_plot")
@@ -46,7 +56,12 @@ navbarPage("ARMA models",
                         hr(),
                         sliderInput("ARMA_MA_order", "MA Order",
                                     min=1, max=5, value=1),
-                        uiOutput("ARMA_MA_sliders")
+                        uiOutput("ARMA_MA_sliders"),
+                        sliderInput("ARMA_sample_size",
+                                    "Number of observations",
+                                    min=10, max=500, value=10,
+                                    step=10,
+                                    animate=animationOptions(interval=300, loop=F))
                       ),
                       mainPanel(
                         plotOutput("ARMA_plot")

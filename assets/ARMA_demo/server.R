@@ -12,8 +12,12 @@ plotARMAacf <- function(ar = numeric(),
     plotTitle <- paste0("ARMA(", arOrder, ", ", maOrder,
                         ")")
   }
-  plot(ARMAacf(ar, (-1)*ma, lag.max, pacf),
+  plotTitle <- paste("Theoretical ACF of", plotTitle)
+  acf_values <- ARMAacf(ar, (-1)*ma, lag.max, pacf)
+  plot(as.integer(names(acf_values)),
+       acf_values,
        type='h',
+       xlim=c(1, lag.max),
        ylim=c(-1, 1),
        main=plotTitle,
        xlab="Lag",
@@ -78,7 +82,14 @@ shinyServer(
         AR_coefs <- sapply(1:AR_order, function(i) {
           input[[paste0("AR_coef", i)]]
         })
-        plotARMAacf(AR_coefs, NULL, lag.max=15) 
+        par(mfrow=c(2,2))
+        plotARMAacf(AR_coefs, NULL, lag.max=10) 
+        AR_sim <- arima.sim(list(ar=AR_coefs), input$AR_sample_size)
+        plot(AR_sim,
+             main="Simulated Series",
+             ylab="Simulated Values")
+        acf(AR_sim, ylim=c(-1,1), xlim=c(1, 10),
+            main="Sample ACF of the simulated series")
       }
     })
     
@@ -137,7 +148,14 @@ shinyServer(
         MA_coefs <- sapply(1:MA_order, function(i) {
           input[[paste0("MA_coef", i)]]
         })
-        plotARMAacf(NULL, MA_coefs, lag.max=15) 
+        par(mfrow=c(2,2))
+        plotARMAacf(NULL, MA_coefs, lag.max=10) 
+        MA_sim <- arima.sim(list(ma=-MA_coefs), input$MA_sample_size)
+        plot(MA_sim,
+             main="Simulated Series",
+             ylab="Simulated Values")
+        acf(MA_sim, ylim=c(-1,1), xlim=c(1, 10),
+            main="Sample ACF of the simulated series")
       }
     })
     
@@ -174,7 +192,16 @@ shinyServer(
         ARMA_MA_coefs <- sapply(1:ARMA_MA_order, function(i) {
           input[[paste0("ARMA_MA_coef", i)]]
         })
-        plotARMAacf(ARMA_AR_coefs, ARMA_MA_coefs, lag.max=15) 
+        par(mfrow=c(2,2))
+        plotARMAacf(ARMA_AR_coefs, ARMA_MA_coefs, lag.max=10) 
+        ARMA_sim <- arima.sim(list(ar=ARMA_AR_coefs,
+                                   ma=-ARMA_MA_coefs),
+                              input$ARMA_sample_size)
+        plot(ARMA_sim,
+             main="Simulated Series",
+             ylab="Simulated Values")
+        acf(ARMA_sim, ylim=c(-1,1), xlim=c(1, 10),
+            main="Sample ACF of the simulated series")
       }
     })
     
