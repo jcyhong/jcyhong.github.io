@@ -1,7 +1,8 @@
+library(TSA)
 plotARMAacf <- function(ar = numeric(),
                         ma = numeric(),
                         lag.max = 15,
-                        pacf = FALSE) {
+                        use.pacf = FALSE) {
   arOrder <- length(ar)
   maOrder <- length(ma)
   if (arOrder == 0) {
@@ -12,16 +13,28 @@ plotARMAacf <- function(ar = numeric(),
     plotTitle <- paste0("ARMA(", arOrder, ", ", maOrder,
                         ")")
   }
-  plotTitle <- paste("Theoretical ACF of", plotTitle)
-  acf_values <- ARMAacf(ar, (-1)*ma, lag.max, pacf)
-  plot(as.integer(names(acf_values)),
-       acf_values,
-       type='h',
-       xlim=c(1, lag.max),
-       ylim=c(-1, 1),
-       main=plotTitle,
-       xlab="Lag",
-       ylab=ifelse(pacf, "PACF", "ACF"))
+  acf_values <- ARMAacf(ar, (-1)*ma, lag.max, use.pacf)
+  if (!use.pacf) {
+    plotTitle <- paste("Theoretical ACF of", plotTitle)
+    plot(as.integer(names(acf_values)),
+         acf_values,
+         type='h',
+         xlim=c(1, lag.max),
+         ylim=c(-1, 1),
+         main=plotTitle,
+         xlab="Lag",
+         ylab=ifelse(use.pacf, "PACF", "ACF")) 
+  } else {
+    plotTitle <- paste("Theoretical PACF of", plotTitle)
+    plot(1:length(acf_values),
+         acf_values,
+         type='h',
+         xlim=c(1, lag.max),
+         ylim=c(-1, 1),
+         main=plotTitle,
+         xlab="Lag",
+         ylab=ifelse(use.pacf, "PACF", "ACF"))
+  }
   abline(h=0)
 }
 
@@ -76,20 +89,33 @@ shinyServer(
       }
     })
    
-    output$AR_plot <- renderPlot({
+    output$theoretical_AR_plot <- renderPlot({
       AR_order <- as.integer(unlist(input$AR_order))
       if (sum(grepl(paste0("AR_coef", AR_order), names(input)))) {
         AR_coefs <- sapply(1:AR_order, function(i) {
           input[[paste0("AR_coef", i)]]
         })
-        par(mfrow=c(2,2))
-        plotARMAacf(AR_coefs, NULL, lag.max=10) 
+        par(mfrow=c(1,2))
+        plotARMAacf(AR_coefs, NULL, lag.max=10)
+        plotARMAacf(AR_coefs, NULL, lag.max=10, use.pacf=T)
+      }
+    })
+    
+    output$sample_AR_plot <- renderPlot({
+      AR_order <- as.integer(unlist(input$AR_order))
+      if (sum(grepl(paste0("AR_coef", AR_order), names(input)))) {
+        AR_coefs <- sapply(1:AR_order, function(i) {
+          input[[paste0("AR_coef", i)]]
+        })
         AR_sim <- arima.sim(list(ar=AR_coefs), input$AR_sample_size)
+        par(mfrow=c(2,2))
         plot(AR_sim,
              main="Simulated Series",
              ylab="Simulated Values")
-        acf(AR_sim, ylim=c(-1,1), xlim=c(1, 10),
-            main="Sample ACF of the simulated series")
+        stats::acf(AR_sim, ylim=c(-1,1), xlim=c(1, 10),
+                   main="Sample ACF of the simulated series")
+        stats::pacf(AR_sim, ylim=c(-1,1), xlim=c(1, 10),
+                    main="Sample PACF of the simulated series")
       }
     })
     
@@ -142,20 +168,33 @@ shinyServer(
       }
     })
     
-    output$MA_plot <- renderPlot({
+    output$theoretical_MA_plot <- renderPlot({
+      MA_order <- as.integer(unlist(input$MA_order))
+      if (sum(grepl(paste0("MA_coef", MA_order), names(input)))) {
+        MA_coefs <- sapply(1:MA_order, function(i) {
+          input[[paste0("MA_coef", i)]]
+        })
+        par(mfrow=c(1,2))
+        plotARMAacf(NULL, MA_coefs, lag.max=10)
+        plotARMAacf(NULL, MA_coefs, lag.max=10, use.pacf=T) 
+      }
+    })
+    
+    output$sample_MA_plot <- renderPlot({
       MA_order <- as.integer(unlist(input$MA_order))
       if (sum(grepl(paste0("MA_coef", MA_order), names(input)))) {
         MA_coefs <- sapply(1:MA_order, function(i) {
           input[[paste0("MA_coef", i)]]
         })
         par(mfrow=c(2,2))
-        plotARMAacf(NULL, MA_coefs, lag.max=10) 
         MA_sim <- arima.sim(list(ma=-MA_coefs), input$MA_sample_size)
         plot(MA_sim,
              main="Simulated Series",
              ylab="Simulated Values")
-        acf(MA_sim, ylim=c(-1,1), xlim=c(1, 10),
-            main="Sample ACF of the simulated series")
+        stats::acf(MA_sim, ylim=c(-1,1), xlim=c(1, 10),
+                   main="Sample ACF of the simulated series")
+        stats::pacf(MA_sim, ylim=c(-1,1), xlim=c(1, 10),
+                    main="Sample PACF of the simulated series")
       }
     })
     
@@ -181,7 +220,24 @@ shinyServer(
       })
     })
     
-    output$ARMA_plot <- renderPlot({
+    output$theoretical_ARMA_plot <- renderPlot({
+      ARMA_AR_order <- as.integer(unlist(input$ARMA_AR_order))
+      ARMA_MA_order <- as.integer(unlist(input$ARMA_MA_order))
+      if (sum(grepl(paste0("ARMA_AR_coef", ARMA_AR_order), names(input))) > 0 &
+          sum(grepl(paste0("ARMA_MA_coef", ARMA_MA_order), names(input))) > 0) {
+        ARMA_AR_coefs <- sapply(1:ARMA_AR_order, function(i) {
+          input[[paste0("ARMA_AR_coef", i)]]
+        })
+        ARMA_MA_coefs <- sapply(1:ARMA_MA_order, function(i) {
+          input[[paste0("ARMA_MA_coef", i)]]
+        })
+        par(mfrow=c(1,2))
+        plotARMAacf(ARMA_AR_coefs, ARMA_MA_coefs, lag.max=10) 
+        plotARMAacf(ARMA_AR_coefs, ARMA_MA_coefs, lag.max=10, use.pacf=T) 
+      }
+    })
+    
+    output$sample_ARMA_plot <- renderPlot({
       ARMA_AR_order <- as.integer(unlist(input$ARMA_AR_order))
       ARMA_MA_order <- as.integer(unlist(input$ARMA_MA_order))
       if (sum(grepl(paste0("ARMA_AR_coef", ARMA_AR_order), names(input))) > 0 &
@@ -193,17 +249,25 @@ shinyServer(
           input[[paste0("ARMA_MA_coef", i)]]
         })
         par(mfrow=c(2,2))
-        plotARMAacf(ARMA_AR_coefs, ARMA_MA_coefs, lag.max=10) 
         ARMA_sim <- arima.sim(list(ar=ARMA_AR_coefs,
                                    ma=-ARMA_MA_coefs),
                               input$ARMA_sample_size)
         plot(ARMA_sim,
              main="Simulated Series",
              ylab="Simulated Values")
-        acf(ARMA_sim, ylim=c(-1,1), xlim=c(1, 10),
-            main="Sample ACF of the simulated series")
+        stats::acf(ARMA_sim, ylim=c(-1,1), xlim=c(1, 10),
+                   main="Sample ACF of the simulated series")
+        stats::pacf(ARMA_sim, ylim=c(-1,1), xlim=c(1, 10),
+                    main="Sample PACF of the simulated series")
+        if (length(ARMA_sim) > 100) {
+          sim_EACF <- eacf(ARMA_sim)
+          image(0:13, 0:7, t(sim_EACF$symbol=="x"),
+                ylim=c(7, 0), xlab="MA Order",
+                ylab="AR Order", main="Sample EACF")
+        }
       }
     })
+    
     
     output$ARMA_eqn <- renderUI({
       num_AR_coefs <- as.integer(input$ARMA_AR_order)

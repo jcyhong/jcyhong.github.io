@@ -16,7 +16,10 @@ navbarPage("ARMA models",
                                     animate=animationOptions(interval=300, loop=F))
                         ),
                       mainPanel(
-                        plotOutput("AR_plot")
+                        h3("Theory"),
+                        plotOutput("theoretical_AR_plot"),
+                        h3("Simulation"),
+                        plotOutput("sample_AR_plot")
                       )
                     )
            ),
@@ -37,7 +40,10 @@ navbarPage("ARMA models",
                                     animate=animationOptions(interval=300, loop=F))
                       ),
                       mainPanel(
-                        plotOutput("MA_plot")
+                        h3("Theory"),
+                        plotOutput("theoretical_MA_plot"),
+                        h3("Simulation"),
+                        plotOutput("sample_MA_plot")
                       )
                     )
            ),
@@ -64,7 +70,10 @@ navbarPage("ARMA models",
                                     animate=animationOptions(interval=300, loop=F))
                       ),
                       mainPanel(
-                        plotOutput("ARMA_plot")
+                        h3("Theory"),
+                        plotOutput("theoretical_ARMA_plot"),
+                        h3("Simulation"),
+                        plotOutput("sample_ARMA_plot")
                       )
                     )
            )
