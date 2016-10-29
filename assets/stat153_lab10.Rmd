@@ -1,0 +1,215 @@
+---
+title: "STAT 153 Lab 10"
+author: "Johnny Hong"
+date: "10/28/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Note
+
+This webpage http://www.stat.pitt.edu/stoffer/tsa2/Rissues.htm highlights many issues when using R for time series analysis. I strongly recommend you read the webpage
+carefully before you start analyzing your data with R.
+
+
+```{r, message=FALSE}
+library(TSA)
+library(forecast)
+library(ggplot2)
+library(scales)
+```
+
+# Forecasting
+
+## A quick example
+The dataset is the color dataset from the textbook. We begin by studying the time series plot, ACF plot and the PACF plot.
+
+```{r}
+color <- read.table("http://homepage.divms.uiowa.edu/~kchan/TSA/Datasets/color.dat",
+                    header=T)
+ts.plot(color)
+acf(color)
+pacf(color)
+```
+
+Based on the PACF plot, AR(1) seems to be a reasonable model. We can use  `forecast()` in the `forecast` package to generate predictions as well as the prediction limits. 
+In the output of `arima()` or `Arima()`, the confusing term `intercept` refers to the mean.
+
+```{r}
+# AR(1) looks reasonable
+m1.color <- Arima(color, order=c(1, 0, 0))
+plot(forecast(m1.color))
+abline(h=m1.color$coef["intercept"], lty=2)
+```
+
+* Are there any patterns in the predictions?
+* Does the width of the prediction interval remain constant?
+
+## Comparison between predictions and observed values
+
+The data is the monthly milk production (pounds per cow) from January 1994 to December 2005.
+```{r}
+milk <- read.table("http://homepage.divms.uiowa.edu/~kchan/TSA/Datasets/milk.dat",
+                    header=T)
+milk <- ts(milk$milk, freq=12, start=c(1994,1))
+ts.plot(milk)
+plot(stl(milk, s.window="periodic"))
+```
+
+See [here](http://stats.stackexchange.com/questions/7876/interpreting-range-bars-in-rs-plot-stl) for an excellent explanation of how to interpret the range bars in the stl plot.
+From the time series plot, we can see that the data is non-stationary, as there is a clear upward (linear) trend. We can use differencing to remove the linear trend.
+```{r}
+milk_diff <- diff(milk)
+ts.plot(milk_diff)
+acf(milk_diff)
+pacf(milk_diff)
+eacf(milk_diff)
+```
+Note that ARMA models do not seem to be appropriate for the differenced data since both the acf plot and pacf plot do not exhibit decaying behavior. For simplicity, let's just use an ARIMA(1, 1, 0) model for the milk production data.
+
+
+The function `funggcast()` comes from [here](http://davenportspatialanalytics.squarespace.com/blog/2012/3/14/plotting-forecast-objects-in-ggplot-part-1-extracting-the-da.html) by Frank Davenport. It requires two arguments: the data (training period and test period) and a forecast object.
+```{r}
+funggcast <- function(dn,fcast){ 
+	require(zoo) #needed for the 'as.yearmon()' function
+ 
+	en<-max(time(fcast$mean)) #extract the max date used in the forecast
+ 
+	#Extract Source and Training Data
+	ds<-as.data.frame(window(dn,end=en))
+	names(ds)<-'observed'
+	ds$date<-as.Date(time(window(dn,end=en)))
+ 
+	#Extract the Fitted Values (need to figure out how to grab confidence intervals)
+	dfit<-as.data.frame(fcast$fitted)
+	dfit$date<-as.Date(time(fcast$fitted))
+	names(dfit)[1]<-'fitted'
+ 
+	ds<-merge(ds,dfit,all.x=T) #Merge fitted values with source and training data
+ 
+	#Exract the Forecast values and confidence intervals
+	dfcastn<-as.data.frame(fcast)
+	dfcastn$date<-as.Date(as.yearmon(row.names(dfcastn)))
+	names(dfcastn)<-c('forecast','lo80','hi80','lo95','hi95','date')
+ 
+	pd<-merge(ds,dfcastn,all.x=T) #final data.frame for use in ggplot
+	return(pd)
+ 
+}
+```
+
+
+```{r}
+milk_train <- window(milk, end=2003.99)
+milk_fit <- Arima(milk_train, order=c(1, 1, 0),
+                  include.drift=T)
+milk_fit 
+milk_forecast <- forecast(milk_fit)
+milk_df <- funggcast(milk, milk_forecast)
+```
+
+The following code is from [here]().
+
+```{r}
+ggplot_forecast <- function(pd) {
+  p1a<-ggplot(data=pd,aes(x=date,y=observed))
+  p1a<-p1a+geom_line(col='red')
+  p1a<-p1a+geom_line(aes(y=fitted),col='blue')
+  p1a<-p1a+geom_line(aes(y=forecast))+geom_ribbon(aes(ymin=lo95,ymax=hi95),alpha=.25)
+  p1a<-p1a+scale_x_date(date_breaks = "12 month", date_labels = "%b-%y")
+  p1a<-p1a+scale_y_continuous(name='Units of Y')
+  p1a<-p1a+theme(axis.text.x=element_text(size=10))
+  p1a<-p1a+ggtitle("Arima Fit to Simulated Data\n(black=forecast, blue=fitted, red=data, shadow=95% conf. interval)")
+  p1a
+}
+```
+
+```{r}
+ggplot_forecast(milk_df)
+```
+
+From the time series plot, there seems to be seasonal patterns in the data.
+This might be one reason why the model fit and the predictions look poor. 
+
+# Spectral Analysis
+
+We use periodogram to estimate the spectral density. The peak locations are the
+important frequencies in the data.
+```{r}
+spec_diff <- periodogram(milk_diff)
+```
+
+Based on the periodogram, all the key frequencies have estimated spectral density
+greater than \(10^4\).
+
+```{r}
+key_freq <- spec_diff$freq[which(spec_diff$spec > 10^4)]
+```
+
+Consider the following simple model:
+
+$$\nabla Y_t = \sum_{j = 1}^m [A_j \cos(2\pi f_j t) + B_j \sin(2\pi f_j t)] + e_t $$
+
+where \(m\) is the number of key frequencies, \(A_j\) and \(B_j\) are unknown constants, \(f_j\)'s are the key frequencies, \(\{e_t\}\) is normal white noise.
+
+```{r}
+t <- 1:length(milk_diff)
+harmonics <- do.call(cbind, lapply(key_freq, function(freq){
+  cbind(cos(2 * pi * freq * t), sin(2 * pi * freq * t))
+}))
+reslm <- lm(milk_diff ~ harmonics)
+plot(t, milk_diff, type="l")
+lines(fitted(reslm)~t, col=4, lty=2)
+```
+
+The fit looks really good. Let's try using the model for predictions.
+
+```{r}
+milk_train_diff <- diff(milk_train)
+t_train <- 1:length(milk_train_diff)
+spec_train_diff <- periodogram(milk_train_diff)
+key_freq_train  <- spec_train_diff$freq[which(spec_train_diff$spec > 10^4)]
+harmonics_train <- do.call(cbind, lapply(key_freq_train, function(freq){
+  cbind(cos(2 * pi * freq * t_train), sin(2 * pi * freq * t_train))
+}))
+reslm <- lm(milk_train_diff ~ harmonics_train)
+milk_diff_harmonic_forecast <-
+  forecast(reslm, newdata=data.frame(harmonics[(length(t_train) + 1):length(t), ]))
+plot(milk_diff,
+     main="Linear regression with sinusoids\n on the differenced series")
+lines(time(milk_diff)[(length(t_train) + 1):length(t)],
+      milk_diff_harmonic_forecast$mean, col=4,
+      lty=2)
+```
+
+```{r}
+milk_unfolded <- cumsum(c(milk[length(milk) - 24], milk_diff_harmonic_forecast$mean))
+milk_unfolded <- milk_unfolded[2:length(milk_unfolded )]
+
+milk_fitted_unfolded <- cumsum(c(milk[1], fitted(reslm)))
+
+plot(milk,
+     main="Linear regression with sinusoids\n on the differenced series")
+lines(time(milk)[1:(length(milk) - 24)],
+      milk_fitted_unfolded, col="red",
+      lty=2)
+lines(time(milk)[(length(milk) - 23):length(milk)],
+      milk_unfolded, col=4,
+      lty=2)
+```
+
+# Extra: Seasonal ARIMA (automatic)
+
+It turns out we can extend ARIMA model to incorporate seasonality. 
+For now, we simply use `auto.arima()` to determine the appropriate
+seasonal ARIMA model.
+```{r}
+milk_auto_fit <- auto.arima(milk_train)
+milk_auto_fit
+milk_auto_forecast <- forecast(milk_auto_fit)
+milk_auto_df <- funggcast(milk, milk_auto_forecast)
+ggplot_forecast(milk_auto_df)
+```
