@@ -9,7 +9,7 @@ GSI (Graduate Student Instructor) at UC Berkeley
 	* [Lab 1](http://jcyhong.github.io/stat153_lab1.html) ([R Markdown]({{site.url}}/assets/stat153_lab1.Rmd))
 	* [Lab 2](http://jcyhong.github.io/stat153_lab2.html) ([R Markdown]({{site.url}}/assets/stat153_lab2.Rmd))
 	* [Lab 4](http://jcyhong.github.io/stat153_lab4.html)
-	* [Lab 10](http://jcyhong.github.io/stat153_lab10.html) ([R Markdown](http://jcyhong.github.io/stat153_lab10.Rmd))
+	* [Lab 10](http://jcyhong.github.io/stat153_lab10.html) ([R Markdown](http://jcyhong.github.io/assets/stat153_lab10.Rmd))
 	* [Lab 11](http://jcyhong.github.io/stat153_lab11.html)
 * Spring 2016: STAT 134 Concepts of Probability
 	* [Course Website](http://www.stat.berkeley.edu/~ani/s134s16/index.html)
