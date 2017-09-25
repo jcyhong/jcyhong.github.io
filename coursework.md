@@ -5,6 +5,8 @@ title: Coursework
 
 ## Coursework at UC Berkeley
 
+* Fall 2017: STAT 240: Nonparametric and Robust Methods
+* Spring 2017: STAT 206B Advanced Topics in Probability and Stochastic Processes
 * Fall 2016: STAT 238 Bayesian Statistics
 * Spring 2016: STAT 260 Convex Optimization and Approximation
 * Spring 2016: STAT 272 Statistical Consulting
