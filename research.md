@@ -3,6 +3,10 @@ layout: page
 title: Research/Projects
 ---
 
+* [Relaxed Wasserstein with Applications to GANs](https://arxiv.org/abs/1705.07164), Xin Guo, Johnny Hong, Tianyi Lin, and Nan Yang, 2017. Preprint.
+
+* [Ambiguity set and learning via Bregman and Wasserstein](https://arxiv.org/abs/1705.08056), Xin Guo, Johnny Hong, and Nan Yang, 2017. Preprint. 
+
 * [Machine learning techniques for price change forecast using the limit order book data]({{site.url}}/assets/machine-learning-price-movements.pdf) (with J. Han, N. Sutardja, S.F. Wong, 2015)
 
 <b>Abstract</b>: In the setting of high-frequency trading, stock price movements are fairly predictable. 
