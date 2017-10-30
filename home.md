@@ -4,7 +4,8 @@ title: Welcome!
 ---
 
 <p class="message">
-  I am a fourth year PhD student in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>. I have completed my B.S. degree in Applied Mathematics and my B.S. degree in Statistics (Applied Statistics with emphasis on Economics) at <a href ="http://ucdavis.edu">University of California, Davis</a>.
+  I am a fourth year PhD student in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>. My current research interest is in statistical methods for analyzing high-dimensional data. I am advised by <a href="https://www.stat.berkeley.edu/~wfithian">Will Fithian</a> and <a href="https://nature.berkeley.edu/~pdevalpine/">Perry de Valpine</a>. 
+I have completed my B.S. degree in Applied Mathematics and my B.S. degree in Statistics (Applied Statistics with emphasis on Economics) at <a href ="http://ucdavis.edu">University of California, Davis</a>.
 </p>
 
 <p> <b>Contact Info</b> <br>
