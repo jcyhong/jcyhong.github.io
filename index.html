@@ -15,4 +15,4 @@ Berkeley, CA 94720 <br>
 jcyhong[at]berkeley[dot]edu</p>
 
 <p> <b>LinkedIn</b> <br>
-<a href = "https://www.linkedin.com/in/chun-yu-hong-a19a3485">https://www.linkedin.com/in/chun-yu-hong-a19a3485</a> </p>
+<https://www.linkedin.com/in/chun-yu-johnny-hong-a19a3485/>
