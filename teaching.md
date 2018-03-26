@@ -5,6 +5,7 @@ title: Teaching
 
 GSI (Graduate Student Instructor) at UC Berkeley
 
+* Spring 2018: STAT 153 Introduction to Time Series (Instructor)
 * Fall 2017: STAT 154 Modern Statistical Prediction and Machine Learning
 	* [Course Website](https://github.com/ucb-stat154/stat154-fall-2017)
 * Spring 2017: STAT 134 Concepts of Probability
