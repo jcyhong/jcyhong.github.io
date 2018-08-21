@@ -7,7 +7,7 @@ GSI (Graduate Student Instructor) at UC Berkeley
 
 * Fall 2018: STAT 153 Introduction to Time Series (Instructor: Merle Behr)
 * Spring 2018: STAT 153 Introduction to Time Series (as an instructor)
-* Fall 2017: STAT 154 Modern Statistical Prediction and Machine Learning
+* Fall 2017: STAT 154 Modern Statistical Prediction and Machine Learning (Instructor: Gaston Sanchez)
 	* [Course Website](https://github.com/ucb-stat154/stat154-fall-2017)
 * Spring 2017: STAT 134 Concepts of Probability (Instructor: Ani Adhikari)
 	* [Course Website](http://www.stat.berkeley.edu/~ani/s134s17/index.html)
