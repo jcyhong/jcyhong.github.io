@@ -4,7 +4,7 @@ title: Welcome!
 ---
 
 <p class="message">
-  I am a fifth year PhD candidate in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>. I am advised by <a href="https://www.stat.berkeley.edu/~wfithian">Will Fithian</a> and <a href="https://nature.berkeley.edu/~pdevalpine/">Perry de Valpine</a>. 
+  I am a sixth year PhD candidate in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>. I am advised by <a href="https://www.stat.berkeley.edu/~wfithian">Will Fithian</a> and <a href="https://nature.berkeley.edu/~pdevalpine/">Perry de Valpine</a>. 
 
 My research interests include latent variable models, computational statistics, and high-dimensional statistical methods for microbiome data.
  
