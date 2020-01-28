@@ -5,6 +5,7 @@ title: Teaching
 
 GSI (Graduate Student Instructor) at UC Berkeley
 
+* Spring 2020: STAT 248 Analysis of Time Series (Instructor: Adityanand Guntuboyina)
 * Fall 2019: STAT 153 Introduction to Time Series (Instructor: Jared Fisher)
 * Fall 2018: STAT 153 Introduction to Time Series (Instructor: Merle Behr)
 * Spring 2018: STAT 153 Introduction to Time Series (as an instructor)
