@@ -8,7 +8,7 @@ title: Welcome!
 
 My research interests include latent variable models, computational statistics, and high-dimensional statistical methods for microbiome data.
 
-</n> 
+</br> 
 Previously I completed my B.S. degree in Applied Mathematics and my B.S. degree in Statistics (Applied Statistics with emphasis on Economics) at <a href ="http://ucdavis.edu">University of California, Davis</a>.
 
 </p>
