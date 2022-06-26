@@ -13,10 +13,7 @@ Previously I completed my B.S. degree in Applied Mathematics and my B.S. degree 
 </p>
 
 <p> <b>Contact Info</b> <br>
-393 Evans Hall <br>
-University of California, Berkeley <br>
-Berkeley, CA 94720 <br>
-jcyhong[at]berkeley[dot]edu</p>
+Email: jcyhong[at]berkeley[dot]edu</p>
 
 <p> <b>LinkedIn</b> <br>
 <a href = "https://www.linkedin.com/in/chun-yu-johnny-hong-a19a3485/">https://www.linkedin.com/in/chun-yu-johnny-hong-a19a3485/</a>
