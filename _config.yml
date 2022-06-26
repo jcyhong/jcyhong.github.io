@@ -30,5 +30,5 @@ github:
   repo:              github.com/jcyhong/jcyhong.github.io
 
 # List of pages
-pages_list:          {'Home':'/home','Resume':'/resume','Research/Projects':'/research','Coursework':'/coursework','Teaching':'/teaching','Miscellaneous':'/miscellaneous'}
+pages_list:          {'Home':'/home','CV':'/resume','Research/Projects':'/research','Coursework':'/coursework','Teaching':'/teaching','Miscellaneous':'/miscellaneous'}
 
