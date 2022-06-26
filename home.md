@@ -4,7 +4,9 @@ title: Welcome!
 ---
 
 <p class="message">
-  I am currently a data scientist at <a href="https://about.google">Google</a>. I received my PhD in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>, where I was advised by <a href="https://www.stat.berkeley.edu/~wfithian">Will Fithian</a> and <a href="https://nature.berkeley.edu/~pdevalpine/">Perry de Valpine</a>. During my PhD studies, I had interned at Adobe, Quora, and Facebook. I have great interest in applying statistics for real-world problems, although coming from a math background I enjoy learning more about theoretical statistics from time to time.
+  I am currently a data scientist at <a href="https://about.google">Google</a>. I received my PhD in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>, where I was advised by <a href="https://www.stat.berkeley.edu/~wfithian">Will Fithian</a> and <a href="https://nature.berkeley.edu/~pdevalpine/">Perry de Valpine</a>. 
+During my PhD studies, I had interned at [Adobe](https://www.adobe.com/about-adobe.html), [Quora](https://www.quora.com/about), and [Facebook](https://about.facebook.com/company-info/). 
+I have great interest in applying statistics for real-world problems, although coming from a math background I enjoy learning more about theoretical statistics from time to time.
 
 <br> 
 Previously I received my B.S. in Applied Mathematics and B.S. in Statistics (Applied Statistics with emphasis on Economics) at <a href ="http://ucdavis.edu">University of California, Davis</a>.
