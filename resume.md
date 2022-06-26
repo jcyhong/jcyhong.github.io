@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Resume 
+title: CV 
 ---
 
-You can view my resume [here]({{site.url}}/assets/Hong,ChunYu.pdf).
+You can view my CV [here]({{site.url}}/assets/Hong,ChunYu.pdf).

@@ -6,21 +6,18 @@
 %\usepackage{newcent}   % uses new century schoolbook postscript font
 \usepackage{multicol} 
 \setlength{\textheight}{9.5in} % increase text height to fit on 1-page 
-\usepackage{geometry}
- \geometry{
- a4paper,
- total={170mm,257mm},
- left=15mm,
- top=15mm,
- right = 15mm
- }
 
-\begin{document} 
+\begin{document}
 \newcommand*\leftright[2]{%
-  \leavevmode
-  \rlap{#1}%
-  \hspace{0.6\linewidth}%
+\leavevmode
+  {#1}%
+  \hfill%
   #2}
+%\newcommand*\leftright[2]{%
+%  \leavevmode
+%  \rlap{#1}%
+%  \hspace{0.6\linewidth}%
+%  #2}
 \newcommand*\leftrighta[2]{%
   \leavevmode
   \rlap{#1}%
@@ -30,30 +27,68 @@
 \name{Chun Yu Hong (Johnny)\\[12pt]}    % the \\[12pt] adds a blank
 				        % line after name      
 
-\address{393 Evans Hall, Berkeley, CA 94720\\Phone: (510) 676-8616\\Email: jcyhong@berkeley.edu\\Website: jcyhong.github.io}
+\address{Phone: (510) 676-8616 | Email: jcyhong@berkeley.edu | Website: http://jcyhong.github.io}
                                   
 \begin{resume}  
  
 \section{EDUCATION}
-    \leftright{\textbf{Ph.D. student in Statistics}}{August 2014 - Present} \\ 
-    \leftright{University of California, Berkeley}{{\it Expected May 2020}} \\
-    Research interests: high-dimensional covariance matrix estimation; latent variable models\\
-    Advisors: William Fithian (Department of Statistics), Perry de Valpine (Department of Environmental \\Science, Policy, and Management)
+    \leftright{\textbf{Ph.D. in Statistics}}{August 2014 - May 2020} \\ 
+    \leftright{University of California, Berkeley}{Berkeley, CA}\\
+    Dissertation: \textit{Latent Variable Models: Maximum Likelihood Estimation and Microbiome Data Analysis}\\
+    Advisors: William Fithian (Department of Statistics), Perry de Valpine (Department of Environmental Science, Policy, and Management)
 %    \\
 %    Potential relevant coursework: Statistical Models: Theory and Application (STAT 215A), \\Statistical Learning Theory (STAT 241A)
     \\
     \\
     \leftright{\textbf{B.S. in Applied Mathematics (with Honors)}}{September 2011 - June 2014} \\
     \textbf{B.S. in Statistics (with Honors)} \\
-    University of California, Davis \\
-%    Potential relevant coursework: Statistical Computing (R) (STA 141), Regression Analysis (STA 108), \\ 
-%    Applied Time Series Analysis (STA 137), Bayesian Statistical Inference (STA 145)
-\section{EXPERIENCE}
+    \leftright{University of California, Davis}{Davis, CA} \\
+
+\section{TEACHING EXPERIENCE}
+
+     \leftright{{\bf Graduate Student Instructor}}{September 2014 - May 2020} \\ 
+    \leftright{UC Berkeley Department of Statistics}{{Berkeley, CA}} 
+            \begin{itemize}\setlength\itemsep{0em}
+        \item[-] Held weekly lab sections and office hours; addressed students' questions about the class materials; graded exams and suggested exam questions. 
+        \item[-] Courses: 
+        \begin{itemize}\setlength\itemsep{0em}
+        \item[•] STAT 133 (Concepts in Computing with Data): Fall 2014
+        \item[•] STAT 134 (Concepts of Probability): Spring 2017
+        \item[•] STAT 135 (Concepts of Statistics): Summer 2015, Fall 2015
+        \item[•] STAT 153 (Introduction to Time Series Analysis): Fall 2016, Spring 2018 (Course Instructor), Fall 2018, Fall 2019
+        \item[•] STAT 154 (Modern Statistical Prediction and Machine Learning): Fall 2017
+        \item[•] STAT 210A (Theoretical Statistics): Fall 2015 (Grader)
+        \item[•]  STAT 222 (Statistics MA Capstone Project): Spring 2016
+         \item[•] STAT 248 (Analysis of Time Series): Spring 2020
+        \end{itemize}
+          \end{itemize}
+
+     \leftright{{\bf Teaching Assistant}}{Dec 2015 - Jan 2016} \\ 
+    \leftright{Tsinghua-Berkeley Shenzhen Institute (TBSI)}{{Shenzhen, China}}     
+        \begin{itemize}\setlength\itemsep{0em}
+        \item[-] Held lab sections and graded exams for a 3-week course on Introduction to Financial Engineering.
+        \end{itemize}
+    
+    \leftright{{\bf Mathematics Tutor}}{November 2012 - August 2014} \\ 
+    \leftright{Student Academic Success Center}{{Davis, CA}}
+    \begin{itemize}
+     \item[-] Emphasized interactive learning by asking students questions instead of routinely presenting\\ 
+     the solutions when solving problems.        
+    \end{itemize}
+
+\section{INDUSTRY EXPERIENCE}
+
+    \leftright{{\bf Data Scientist}}{June 2020 - Present} \\ 
+    \leftright{Google LLC}{{Sunnyvale, CA}} 
+            \begin{itemize}\setlength\itemsep{0em}
+        \item[-] Currently in Counter-Abuse Technology Data Science: Expand data science capabilities of Google's Trust and Safety operational intelligence data warehouse.
+        \item[-] Previously in E2E Data Science: Collaborated with software engineers and site reliability engineers to develop monitoring and alerting on key health metrics of Google Search indexing infrastructure.
+        \end{itemize}
 
     \leftright{{\bf Data Science Analytics Intern}}{May 2019 - August 2019} \\ 
     \leftright{Facebook}{{Menlo Park, CA}} 
             \begin{itemize}\setlength\itemsep{0em}
-        \item[-] Worked closely with cross-functional partners on analyzing the performance of \\video poll ads. 
+        \item[-] Analyzed the performance of video poll ads and provided key insights to cross-functional partners for product launch. 
 \item[-]  Developed a novel framework for quantifying value of users to different types of advertising. 
 \item[-] Explored the value of brand advertising on Facebook and identified areas in which \\brand ads performed particularly well. 
         \end{itemize}
@@ -61,7 +96,7 @@
     \leftright{{\bf Research Scientist}}{September 2018 - December 2018} \\ 
     \leftright{PRO Unlimited @ Facebook}{{Menlo Park, CA}} 
             \begin{itemize}\setlength\itemsep{0em}
-        \item[-] Evaluated the extent of treatment effect heterogeneity in Facebook experiments and \\raised awareness of the issue of multiple testing.
+        \item[-] Evaluated the extent of treatment effect heterogeneity in Facebook experiments and raised awareness of the issue of multiple testing.
         \end{itemize}
   
     \leftright{{\bf Data Scientist Intern}}{May 2018 - August 2018} \\
@@ -79,63 +114,72 @@
      \item[-] Built an R package for finding the optimal combination of multiple forecasts.
      \item[-] Created interactive visualization of model performance via R shinyApp.
      \item[-] Conducted performance evaluation of the existing marketing lead scoring system.
-     \end{itemize}
-     
-     \leftright{{\bf Graduate Student Instructor}}{September 2014 - Present} \\ 
-    \leftright{UC Berkeley Department of Statistics}{{Berkeley, CA}} 
-            \begin{itemize}\setlength\itemsep{0em}
-        \item[-] Grades exams, and occasionally suggests exam questions. 
-        \item[-] Holds weekly lab sections and office hours, answering students' questions about the class materials.
-        \item[-] Courses: STAT 133 (Concepts in Computing with Data), STAT 134 (Concepts of Probability), 
-        \item[] STAT 135 (Concepts of Statistics), 
-        STAT 153 (Introduction to Time Series Analysis), 
-        \item[] STAT 154 (Modern Statistical Prediction and Machine Learning), 
-        \item[] STAT 210A (Theoretical Statistics) (Grader), 
-         STAT 222 (Statistics MA Capstone Project),
-         \item[] STAT 248 (Analysis of Time Series)
-        \end{itemize}
-  
+     \end{itemize}   
+
+\section{CONSULTING EXPERIENCE}
      
     \leftright{{\bf Statistical Consultant}}{January 2016 - May 2016} \\ 
     \leftright{UC Berkeley Department of Statistics}{{Berkeley, CA}}
     \begin{itemize}
      \item[-] Provided statistical guidance for researchers (primarily for UC Berkeley students) in various \\disciplines, such as psychology, biology, and economics.
      \item[-] Discussed statistical issues such as experimental design and hypothesis testing procedures.    
-    \end{itemize}        
-    
+    \end{itemize}     
+
+\section{RESEARCH EXPERIENCE}
+    \leftright{{\bf Graduate Student Researcher}}{Jan 2019 - May 2019} \\ 
+    \leftright{UC Berkeley Department of Statistics}{{Berkeley, CA}}
+\begin{itemize}
+        \item[-] Examined the statistical properties of rarefaction, a widely used data normalization procedure for microbiome data analysis.
+        \end{itemize}
+        
     \leftright{{\bf Undergraduate Researcher}}{August 2013 - September 2013} \\ 
     \leftright{UC Davis Department of Mathematics}{{Davis, CA}} 
         \begin{itemize}
-        \item[-] Developed the first version of the program in Sage for computation and experimentation
-       \\with the 1-row Gomory-Johnson infinite group problem.
+        \item[-] Developed software in SageMath for computation and experimentation
+       with the 1-row \\ Gomory-Johnson infinite group problem in discrete optimization.
        \item[-] Advisor: Matthias K\"{o}ppe.
         \end{itemize}
-%    
-%    \leftright{{\bf Mathematics Tutor}}{November 2012 - August 2014} \\ 
-%    \leftright{Student Academic Success Center}{{Davis, CA}}
-%    \begin{itemize}
-%     \item[-] Emphasized interactive learning by asking students questions instead of routinely presenting\\ 
-%     the solutions when solving problems.        
-%    \end{itemize}
 
-\section{SELECTED WORKS}
-\textbf{Relaxed Wasserstein with Applications to GANs}, Xin Guo, Johnny Hong, Tianyi Lin, and Nan \\Yang, 2017. Preprint.
-\\
-\textbf{Sampling-Based Approaches to Maximum Likelihood Estimation for Latent Variable \\Models}, Johnny Hong, Sara Stoudt, and Perry de Valpine, 2017. Under Revision.
+\section{REFEREED PUBLICATIONS}
+\textbf{Hong, J.}, Karaoz, U., de Valpine, P., and Fithian, W. (2022) To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data. \textit{Bioinformatics}, 38 (9), 2389-2396.
 
-\section{PROJECTS}
-\textbf{An introduction to the use of hidden Markov models for stock return analysis}, \\Johnny Hong and Yannik Pitcan, 2015.
-            \begin{itemize}\setlength\itemsep{0em}
-            \item[-] Final group project for the graduate-level course Statistical Learning Theory
-            \item[-] Project Role: Developed a hidden Markov model (HMM) for volatility analysis of stock returns
-            \end{itemize}
+Guo, X., \textbf{Hong, J.}, Lin, T., and Yang, N. (2021) Relaxed Wasserstein with Applications to GANs. \textit{IEEE International Conference on Acoustics, Speech, and Signal Processing}.
+
+\textbf{Hong, C.Y.}, K\"{o}ppe, M., and Zhou, Y. (2018) Equivariant perturbation in Gomory and Johnson's infinite group problem (V). Software for the continuous and discontinuous 1-row case. \textit{Optimization Methods and Software}, 33 (3), 475-498.
+
+\section{WORKING PAPERS}
+\textbf{Hong, J.}, Stoudt, S., and de Valpine, P. (2017+) Fast maximum likelihood estimation for general hierarchical models.
+
+\section{CONFERENCE PRESENTATIONS}
+ \leftright{{\bf International Statistical Ecology Conference (ISEC)}}{July 2018} \\ 
+    \leftright{University of St Andrews}{{St Andrews, Fife, Scotland}}
+    \begin{itemize}\setlength\itemsep{0em}
+    \item[-] Poster presentation of \textbf{Sampling-Based Approaches to Maximum Likelihood \\Estimation for Latent Variable Models}, joint work with Sara Stoudt and Perry de \\Valpine.
+    \end{itemize}
+
+\section{UNIVERSITY SERVICE}   
+ \leftright{{\bf Climate Datathon Mentor}}{April 2019} \\ 
+    \leftright{Berkeley-Haas AMENA Center}{{Berkeley, CA}}
+    \begin{itemize}\setlength\itemsep{0em}
+    \item[-] Helped participating teams brainstorm data analysis ideas; addressed technical concerns from the participants.
+    \end{itemize}
+
+ \leftright{{\bf DataFest Helper}}{April 2017, April 2018} \\ 
+    \leftright{University of California, Berkeley}{{Berkeley, CA}}
+    \begin{itemize}\setlength\itemsep{0em}
+    \item[-] Helped coordinate a data analysis competition for undergraduates; provided suggestions and feedback to participants.
+    \end{itemize}
+
+%\section{PROJECTS}
+%\textbf{An introduction to the use of hidden Markov models for stock return analysis}, \\Johnny Hong and Yannik Pitcan, 2015.
+%            \begin{itemize}\setlength\itemsep{0em}
+%            \item[-] Final group project for the graduate-level course Statistical Learning Theory
+%            \item[-] Project Role: Developed a hidden Markov model (HMM) for volatility analysis of stock returns
+%            \end{itemize}
             
 \section{COMPUTER SKILLS}          
     Proficient (had used extensively at work before) in R, Python (including packages such as matplotlib, \\numpy, and pandas), SQL, Amazon Redshift, PySpark, Presto. \\
     Experience (mainly from undergraduate coursework) in C, C++, and MATLAB. \\
-
-\section{EXAMS}
-    \leftright{Actuarial Exam P (Probability): Pass (Grade: 10)}{July 2013} 
  
 \section{HONORS AND AWARDS}        
     \leftright{Outstanding Graduate Student Instructor Award}{UC Berkeley; 2016 - 2017}\\
@@ -144,34 +188,16 @@
     \leftright{Eric C. Ruliffson Scholarship in Mathematics}{UC Davis; Spring 2012, Spring 2013}\\
      \leftright{James and Leta Fulmor Scholarship}{UC Davis; Spring 2012}\\
      \leftright{Robert Lewis Wasser Memorial Scholarship}{UC Davis; Spring 2012}      
- 
-\section{VOLUNTARY EXPERIENCE}   
- \leftright{{\bf Climate Datathon Mentor}}{April 2019} \\ 
-    \leftright{Berkeley-Haas AMENA Center}{{Berkeley, CA}}
-    \begin{itemize}\setlength\itemsep{0em}
-    \item[-] Helped participating teams brainstorm data analysis ideas.
-    \item[-] Addressed technical concerns from the participants.
-    \end{itemize}
 
- \leftright{{\bf DataFest Helper}}{April 2017, April 2018} \\ 
-    \leftright{University of California, Berkeley}{{Berkeley, CA}}
-    \begin{itemize}\setlength\itemsep{0em}
-    \item[-] Helped coordinate a data analysis competition for undergraduates.
-    \item[-] Provided suggestions and feedback to participants.
-    \end{itemize}
+\section{EXAMS}
+    \leftright{Actuarial Exam P (Probability): Pass (Grade: 10)}{July 2013} 
+ 
 %    \leftright{{\bf Math Circle Teaching Assistant}}{January 2013 - March 2013} \\ 
 %    \leftright{University of California, Davis}{{Davis, CA}}
 %    \begin{itemize}\setlength\itemsep{0em}
 %    \item[-]Worked with a graduate student in teaching high school students elementary graph theory.
 %    \item[-]Revised lesson plans and worksheets authored by the graduate student.
 %    \end{itemize}
-    
-\section{SELECTED PRESENTATIONS}
- \leftright{{\bf International Statistical Ecology Conference (ISEC)}}{July 2018} \\ 
-    \leftright{University of St Andrews}{{St Andrews, Fife, Scotland}}
-    \begin{itemize}\setlength\itemsep{0em}
-    \item[-] Poster presentation of \textbf{Sampling-Based Approaches to Maximum Likelihood \\Estimation for Latent Variable Models}, joint work with Sara Stoudt and Perry de \\Valpine.
-    \end{itemize}
     
 % \leftright{{\bf Berkeley Statistics Annual Research Symposium (BSTARS)}}{March 2018} \\ 
 %    \leftright{University of California, Berkeley}{{Berkeley, CA}}
