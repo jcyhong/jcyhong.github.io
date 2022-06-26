@@ -7,7 +7,8 @@ title: Welcome!
   I am currently a data scientist at <a href="https://about.google">Google</a>. I received my PhD in Statistics at <a href = "http://berkeley.edu">University of California, Berkeley</a>, where I was advised by <a href="https://www.stat.berkeley.edu/~wfithian">Will Fithian</a> and <a href="https://nature.berkeley.edu/~pdevalpine/">Perry de Valpine</a>. 
 
 My research interests include latent variable models, computational statistics, and high-dimensional statistical methods for microbiome data.
- 
+
+</n> 
 Previously I completed my B.S. degree in Applied Mathematics and my B.S. degree in Statistics (Applied Statistics with emphasis on Economics) at <a href ="http://ucdavis.edu">University of California, Davis</a>.
 
 </p>
