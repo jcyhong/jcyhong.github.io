@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  25 JUN 2022 18:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  12 OCT 2022 23:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -113,16 +113,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--46
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 55.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 61.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
  [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 181--183
+Underfull \hbox (badness 10000) in paragraph at lines 187--189
 
  []
 
@@ -134,13 +134,13 @@ Here is how much of TeX's memory you used:
  4426 multiletter control sequences out of 15000+600000
  4899 words of font info for 18 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,8n,19p,285b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,8n,19p,285b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
 pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.p
 fb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Hong,ChunYu.pdf (3 pages, 84390 bytes).
+Output written on Hong,ChunYu.pdf (3 pages, 84387 bytes).
 PDF statistics:
  34 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream
