@@ -3,6 +3,11 @@ layout: page
 title: Teaching
 ---
 
+Lecturer at UC Berkeley
+
+* Spring 2023: STAT 2 Introduction to Statistics
+* Fall 2022: STAT 2 Introduction to Statistics
+
 GSI (Graduate Student Instructor) at UC Berkeley
 
 * Spring 2020: STAT 248 Analysis of Time Series (Instructor: Adityanand Guntuboyina)
