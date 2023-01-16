@@ -3,7 +3,9 @@ layout: page
 title: Research/Projects
 ---
 
-* [Relaxed Wasserstein with Applications to GANs](https://arxiv.org/abs/1705.07164), Xin Guo, Johnny Hong, Tianyi Lin, and Nan Yang, 2017. Preprint.
+* [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data](https://academic.oup.com/bioinformatics/article-abstract/38/9/2389/6536959?redirectedFrom=fulltext). Johnny Hong, Ulas Karaoz, Perry de Valpine, and William Fithian. 2022. Bioinformatics 38 (9), 2389-2396. 
+
+* [Relaxed Wasserstein with Applications to GANs](https://arxiv.org/abs/1705.07164), Xin Guo, Johnny Hong, Tianyi Lin, and Nan Yang, 2021. IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 3325-3329.
 
 * [Ambiguity set and learning via Bregman and Wasserstein](https://arxiv.org/abs/1705.08056), Xin Guo, Johnny Hong, and Nan Yang, 2017. Preprint. 
 
