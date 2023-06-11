@@ -20,4 +20,4 @@ Previously I received my B.S. in Applied Mathematics and B.S. in Statistics (App
 Email: jcyhong[at]berkeley[dot]edu</p>
 
 <p> <b>LinkedIn</b> <br>
-<a href = "https://www.linkedin.com/in/chun-yu-johnny-hong-a19a3485/">https://www.linkedin.com/in/chun-yu-johnny-hong-a19a3485/</a>
+<a href = "https://www.linkedin.com/in/johnny-hong-a19a3485/">https://www.linkedin.com/in/johnny-hong-a19a3485/</a>
